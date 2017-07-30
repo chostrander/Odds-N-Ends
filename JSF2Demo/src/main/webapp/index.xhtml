@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>EIP Log Search</title>
+    </h:head>
+    <h:body>
+        <p>EIP Log Search</p>
+        <br />
+        <!--<h:link outcome="welcomePrimefaces_1" value="Primefaces welcome page" />-->
+
+        <h:form id="form" >
+            <p:panel id="panel" header="Search Form">
+                <p:messages id="messages"/>
+                <h:panelGrid id="panelGrid" columns="2">
+                    <f:facet name="header">
+                        <p:row>
+                            <p:column colspan="2">Search Items</p:column>
+                        </p:row>
+                    </f:facet>
+                    <p:outputLabel for="searchDateFrom" value="Search Date From :" />
+                    <p:calendar id="searchDateFrom" value="#{searchCriteria.searchDateFrom}" pattern="MM/dd/yyyy HH:mm" mask="true"/>
+                    <p:outputLabel for="searchDateTo" value="Search Date From :" />
+                    <p:calendar id="searchDateTo" value="#{searchCriteria.searchDateTo}" pattern="MM/dd/yyyy HH:mm" mask="true"/>
+                    <p:outputLabel for="transactionId" value="Transaction ID :"/>
+                    <p:inputText id="transactionId" value="#{searchCriteria.transactionId}"/>
+                    <p:outputLabel for="correlationId" value="Correlation ID :"/>
+                    <p:inputText id="correlationId" value="#{searchCriteria.correlationId}"/>
+                    <p:outputLabel for="sourceId" value="Source :"/>
+                    <p:inputText id="sourceId" value="#{searchCriteria.source}"/>
+                    <p:outputLabel for="sourceId" value="Target :"/>
+                    <p:inputText id="targetId" value="#{searchCriteria.target}"/>
+                     
+                </h:panelGrid>
+                <p:toolbar >
+                        <f:facet name="left">
+                            <p:commandButton id="clear" value="Clear" update="panel" process="@this">
+                                <p:resetInput target="panel"/>
+                            </p:commandButton>
+                        </f:facet>
+                        <f:facet name="left">
+                            <p:commandButton id="searchId" value="Search"   actionListener="#{logSearchActions.searchByCorrelationId}" >
+                            </p:commandButton>
+                        </f:facet>
+                        <f:facet name="right">
+                            <p:commandButton id="searchByTarget" value="Search By Target"   actionListener="#{logSearchActions.searchByCorrelationId}" >
+                            </p:commandButton>
+                        </f:facet>
+                    </p:toolbar>
+            </p:panel>
+        </h:form>
+    </h:body>
+</html>
+
